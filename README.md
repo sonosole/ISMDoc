@@ -21,10 +21,10 @@
 如果观测点位从声源处挪了 $Δ \bm r$ , 则相当于 $s(t,\bm r)$ 卷积了一个带空间漂移的时空狄拉克函数 $δ(t,\bm r + Δ \bm r)$ 。如此，$\texttt{\footnotesize\blue{从声源处出发的所有声线中恰好能到达观测点的拉直声线}}$  $\blue {{\bm l}_{s′→o}}$ 等效于$\texttt{\footnotesize\blue{从声源处出发的所有声线中恰好能到达声源处的拉直声线}}$ $\blue {{\bm l}_{s′→s}}$ $\texttt{\footnotesize\blue{漂移}}$ $\blue {Δ \bm r}$，即 ${\bm l}_{s′→o}={\bm l}_{s′→s} + {Δ \bm r}$ .
 
 <!-- A Python Library for Room Impulse Response Simulation with GPU Acceleration -->
+
 <div align="center">
   <img src="./doc/space-shift.png" width="600" alt="描述">
 </div>
-
 
 由于一维波动方程中有项
 
@@ -36,12 +36,15 @@ $$
 
 即空间移动导致的相移将等效于时间漂移导致的相移，也即
 
-
-$$s(t,\bm r) ⊛ δ(t,\bm r + Δ \bm r) \ ⟺ \ s(t,\bm r) ⊛ δ(t-\frac{|Δ \bm r|}{c},\bm r)$$
+$$
+s(t,\bm r) ⊛ δ(t,\bm r + Δ \bm r) \ ⟺ \ s(t,\bm r) ⊛ δ(t-\frac{|Δ \bm r|}{c},\bm r)
+$$
 
 因此从镜像源到原始声源再叠加空间漂移等效为从镜像源直接到漂移点，也即
 
-$$δ(t,\bm r + {\bm l}_{s′→s})⊛δ(t,\bm r + {\bm l}_{s→o}) = δ(t,\bm r + {\bm l}_{s′o}) = δ(t-\frac{|{\bm l}_{s′o}|}{c},\bm r)$$
+$$
+δ(t,\bm r + {\bm l}_{s′→s})⊛δ(t,\bm r + {\bm l}_{s→o}) = δ(t,\bm r + {\bm l}_{s′o}) = δ(t-\frac{|{\bm l}_{s′o}|}{c},\bm r)
+$$
 
 ### Formula
 
@@ -66,11 +69,11 @@ $$
 $$
 \begin{cases}
 x_i = (-1)^i x_s + [i + \frac{1-(-1)^i}{2}] x_r \\
-y_i = (-1)^i y_s + [i + \frac{1-(-1)^i}{2}] y_r \\
-z_i = (-1)^i z_s + [i + \frac{1-(-1)^i}{2}] z_r
+y_j = (-1)^j y_s + [j + \frac{1-(-1)^j}{2}] y_r \\
+z_k = (-1)^k z_s + [k + \frac{1-(-1)^k}{2}] z_r
 \end{cases}
-$$ 
+$$
 
-则声源距离麦克风的距离为
+则镜像声源距离麦克风的距离为
 
-$d_{ijk} = \sqrt{(x_i - x_m)^2 + (y_i - y_m)^2 + (z_i - z_m)^2}$
+$d_{ijk} = \sqrt{(x_i - x_m)^2 + (y_j - y_m)^2 + (z_k - z_m)^2}$
